@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _05_BiteBank
+namespace _05_ByteBank
 {
     class Program
     {
