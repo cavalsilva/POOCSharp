@@ -3,7 +3,24 @@
     public class ContaCorrente
     {
         public Cliente Titular { get; set; }
-        public int Agencia { get; set; }
+        private int _agencia;
+        public int Agencia
+        {
+            get
+            {
+                return _agencia;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    return;
+                }
+
+                _agencia = value;
+            }
+        }
+
         public int Numero { get; set; }
         private double _saldo = 100;
         public double Saldo
@@ -20,6 +37,12 @@
                 }
                 _saldo = value;
             }
+        }
+
+        public ContaCorrente(int agencia, int numero)
+        {
+            Agencia = agencia;
+            Numero = numero;
         }
 
         public bool Sacar(double valor)
