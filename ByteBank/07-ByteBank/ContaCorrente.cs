@@ -39,10 +39,15 @@
             }
         }
 
+        //O método estático é uma característica da Classe e não específica de cada conta
+        public static int TotalDeContasCriadas { get; private set; }
+
         public ContaCorrente(int agencia, int numero)
         {
             Agencia = agencia;
             Numero = numero;
+
+            TotalDeContasCriadas++;
         }
 
         public bool Sacar(double valor)
