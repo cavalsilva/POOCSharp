@@ -10,7 +10,15 @@ namespace _08_ByteBank
     {
         static void Main(string[] args)
         {
-            Metodo();
+            try
+            {
+                Metodo();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
             Console.ReadLine();
         }
         //Teste com a cadeia de chamada:
@@ -22,23 +30,23 @@ namespace _08_ByteBank
 
         private static void TestaDivisao(int divisor)
         {
-            try
-            {
-                int resultado = Dividir(10, divisor);
+            int resultado = Dividir(10, divisor);
 
-                Console.WriteLine("Resultado da divisão de 10 por " + divisor + " é " + resultado);
-            }
-            catch (DivideByZeroException erro)
-            {
-                Console.WriteLine(erro.Message);
-                Console.WriteLine(erro.StackTrace);
-                //Console.WriteLine("Não é possível fazer uma divisão por zero");
-            }
+            Console.WriteLine("Resultado da divisão de 10 por " + divisor + " é " + resultado);
         }
 
         private static int Dividir(int numero, int divisor)
         {
-            return numero / divisor;
+            try
+            {
+                return numero / divisor;
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Exceção com numero=" + numero + " e divisor=" + divisor);
+                throw;
+            }
+
         }
     }
 }
