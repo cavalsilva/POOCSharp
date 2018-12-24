@@ -1,9 +1,28 @@
-﻿namespace _06_ByteBank
+﻿namespace _08_ByteBank
 {
     public class ContaCorrente
     {
+        public static double TaxaOperacao { get; private set; }
+
         public Cliente Titular { get; set; }
-        public int Agencia { get; set; }
+        private int _agencia;
+        public int Agencia
+        {
+            get
+            {
+                return _agencia;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    return;
+                }
+
+                _agencia = value;
+            }
+        }
+
         public int Numero { get; set; }
         private double _saldo = 100;
         public double Saldo
@@ -20,6 +39,19 @@
                 }
                 _saldo = value;
             }
+        }
+
+        //O método estático é uma característica da Classe e não específica de cada conta
+        public static int TotalDeContasCriadas { get; private set; }
+
+        public ContaCorrente(int agencia, int numero)
+        {
+            Agencia = agencia;
+            Numero = numero;
+
+            TaxaOperacao = 30 / TotalDeContasCriadas;
+
+            TotalDeContasCriadas++;
         }
 
         public bool Sacar(double valor)
