@@ -26,6 +26,7 @@ namespace _08_ByteBank
             }
             catch (SaldoInsuficienteException ex)
             {
+                Console.WriteLine(ex.StackTrace);
                 Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
