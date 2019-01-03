@@ -12,7 +12,11 @@ namespace _08_ByteBank
         {
             try
             {
-                ContaCorrente conta = new ContaCorrente(456, 0);
+                ContaCorrente conta = new ContaCorrente(456, 4567984);
+
+                conta.Depositar(50);
+                Console.WriteLine(conta.Saldo);
+                conta.Sacar(500);
             }
             catch (ArgumentException ex)
             {
@@ -20,12 +24,16 @@ namespace _08_ByteBank
                 Console.WriteLine("Ocorreu uma exceção do tipo ArgumentException.");
                 Console.WriteLine(ex.Message);
             }
+            catch (SaldoInsuficienteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-            Metodo();
+            //Metodo();
 
             Console.WriteLine("Execução finalizada. Tecle enter para sair.");
             Console.ReadLine();
@@ -53,7 +61,6 @@ namespace _08_ByteBank
             {
                 Console.WriteLine("Exceção com numero=" + numero + " e divisor=" + divisor);
                 throw;
-                Console.WriteLine("Código depois do throw");
             }
         }
     }
