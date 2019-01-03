@@ -12,13 +12,22 @@ namespace _08_ByteBank
         {
             try
             {
-                Metodo();
+                ContaCorrente conta = new ContaCorrente(456, 0);
             }
-            catch (Exception e)
+            catch (ArgumentException ex)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Argumento com problema: " + ex.ParamName);
+                Console.WriteLine("Ocorreu uma exceção do tipo ArgumentException.");
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
+            Metodo();
+
+            Console.WriteLine("Execução finalizada. Tecle enter para sair.");
             Console.ReadLine();
         }
         //Teste com a cadeia de chamada:
@@ -31,7 +40,6 @@ namespace _08_ByteBank
         private static void TestaDivisao(int divisor)
         {
             int resultado = Dividir(10, divisor);
-
             Console.WriteLine("Resultado da divisão de 10 por " + divisor + " é " + resultado);
         }
 
@@ -45,8 +53,8 @@ namespace _08_ByteBank
             {
                 Console.WriteLine("Exceção com numero=" + numero + " e divisor=" + divisor);
                 throw;
+                Console.WriteLine("Código depois do throw");
             }
-
         }
     }
 }
