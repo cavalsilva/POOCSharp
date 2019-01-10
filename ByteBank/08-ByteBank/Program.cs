@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,35 @@ namespace _08_ByteBank
     class Program
     {
         static void Main(string[] args)
+        {
+            CarregarContas();
+
+            Console.WriteLine("Execução finalizada. Tecle enter para sair.");
+            Console.ReadLine();
+        }
+
+        public static void CarregarContas()
+        {
+            LeitorDeArquivo leitorDeArquivo = null;
+            try
+            {
+                leitorDeArquivo = new LeitorDeArquivo("conta.txt");
+                leitorDeArquivo.LerProximaLinha();
+                leitorDeArquivo.LerProximaLinha();
+                leitorDeArquivo.LerProximaLinha();
+            }
+            catch (IOException)
+            {
+                Console.WriteLine("Exceção do tipo IOException");
+            }
+            finally
+            {
+                if (leitorDeArquivo != null)
+                    leitorDeArquivo.Fechar();
+            }
+        }
+
+        public static void TestaInnerException()
         {
             try
             {
@@ -28,11 +58,8 @@ namespace _08_ByteBank
                 Console.WriteLine(e.InnerException.Message);
                 Console.WriteLine(e.InnerException.StackTrace);
             }
-            //Metodo();
-
-            Console.WriteLine("Execução finalizada. Tecle enter para sair.");
-            Console.ReadLine();
         }
+
         //Teste com a cadeia de chamada:
         //Metodo -> TestaDivisao -> Dividir
         private static void Metodo()
