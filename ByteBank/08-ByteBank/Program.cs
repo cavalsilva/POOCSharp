@@ -19,23 +19,30 @@ namespace _08_ByteBank
 
         public static void CarregarContas()
         {
-            LeitorDeArquivo leitorDeArquivo = null;
-            try
+
+            using (LeitorDeArquivo leitorDeArquivo = new LeitorDeArquivo("conta.txt"))
             {
-                leitorDeArquivo = new LeitorDeArquivo("conta.txt");
-                leitorDeArquivo.LerProximaLinha();
-                leitorDeArquivo.LerProximaLinha();
                 leitorDeArquivo.LerProximaLinha();
             }
-            catch (IOException)
-            {
-                Console.WriteLine("Exceção do tipo IOException");
-            }
-            finally
-            {
-                if (leitorDeArquivo != null)
-                    leitorDeArquivo.Fechar();
-            }
+
+            //LeitorDeArquivo leitorDeArquivo = null;
+            //try
+            //{
+            //    leitorDeArquivo = new LeitorDeArquivo("conta.txt");
+            //    leitorDeArquivo.LerProximaLinha();
+            //    leitorDeArquivo.LerProximaLinha();
+            //    leitorDeArquivo.LerProximaLinha();
+            //}
+            //catch (IOException)
+            //{
+            //    Console.WriteLine("Exceção do tipo IOException");
+            //}
+            //finally
+            //{
+            //    if (leitorDeArquivo != null)
+            //        leitorDeArquivo.Fechar();
+            //}
+
         }
 
         public static void TestaInnerException()
